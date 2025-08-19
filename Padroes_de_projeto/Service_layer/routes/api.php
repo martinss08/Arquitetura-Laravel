@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Routing\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
+Route::get('/user', [UserController::class, 'index']);
 Route::post('/user/register', [UserController::class, 'store']);

@@ -16,25 +16,26 @@ class UserController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         $user = User::all();
 
-        if(!empty($user)) {
+        if($user->isEmpty()) {
             return response()->json(['message' => 'nao tem user']);
         }
-        return response()->json($user);
+        return response()->json([
+            'user' => $user
+        ]);
     }
 
-    public function store(Request $request): JsonResponse
+    public function store( Request $request): JsonResponse
     {
-        dd("oi");
-        $data = $request()->only(['name', 'email', 'password']);
+        $data = $request->only(['name', 'email', 'password']);
 
         $user = $this->service->create($data);
 
         return response()->json([
-            "data" => 'usuario creado',  
+            "data" => 'usuario creado',             
             "user" => $user             
             ],201);
     }

@@ -11,18 +11,14 @@ class UserService
     public function __construct(protected User $model)
     {}
 
-    // public function index()
-    // {
-    //     $user = $this->model->all();
-
-    //     return $user;
-    // }
+    public function index()
+    {
+        return $this->model->all();
+    }
 
     public function create(array $data): stdClass
     {
-        dd("oi");
-
-        $user = User::create([
+        $user = $this->model->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
