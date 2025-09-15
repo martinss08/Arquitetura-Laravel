@@ -54,7 +54,7 @@ class UserController extends Controller
             'message' => 'Usuário criado com sucesso',
             'data'    => $user
         ], 201);
-    }
+    } 
 
 
     public function destroy($id): JsonResponse
